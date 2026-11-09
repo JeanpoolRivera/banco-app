@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+/* Modo oscuro controlado por la clase "dark" en <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --animate-entrada: entrada 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-toast: toast 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-destello: destello 1.6s ease-out both;
+  --animate-brillo: brillo 7s ease-in-out infinite;
+
+  @keyframes entrada {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes toast {
+    from {
+      opacity: 0;
+      transform: translateX(24px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes destello {
+    0% {
+      background-color: rgb(99 102 241 / 0.22);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+
+  @keyframes brillo {
+    0%,
+    55% {
+      transform: translateX(-130%) skewX(-18deg);
+    }
+    100% {
+      transform: translateX(330%) skewX(-18deg);
+    }
+  }
+}
+
+/* Respeta la preferencia de "reducir movimiento" */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
